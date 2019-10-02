@@ -1,5 +1,12 @@
     const express =  require('express');
     const routes = require('./routes');
+    const moongoose = require('mongoose');
+
+    moongoose.connect('mongodb+srv://omnistack:omnistack@omnistack-hlsc5.mongodb.net/aplicacao?retryWrites=true&w=majority',{
+        useNewUrlParser:true,
+        useUnifiedTopology:true
+    })
+
     const app = express();
 
     //Para filtros
