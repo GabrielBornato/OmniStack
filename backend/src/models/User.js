@@ -4,4 +4,4 @@
         email:String
     });
 
-    module.exports = moongose.Model('User',UserSchema);
+    module.exports = moongose.model('User',UserSchema);
