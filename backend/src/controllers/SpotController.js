@@ -1,22 +1,27 @@
     const Spot = require('../models/Spot');
+    const User = require('../models/User');
 
     module.exports = {
         async store(req,res){
-            /* const {thumbnail} = req.body;
-            const {company} = req.body;
-            const {price} = req.body;
-            const techs = req.body.techs.split(',');
+            const { filename } = req.file;
+            const {company, techs, price } = req.body;
+            const { user_id } = req.headers;
 
-            let spot = await Spot.findOne({thumbnail,company,price,techs:techs})
+            let user = await User.findById(user_id)
+            if(!user){
+                return res.status(400).json({error: 'User does nost exists'})
+            }
+            let spot = await Spot.findOne({thumbnail:filename,company,price,techs:techs.split(','),user: user_id})
             if(!spot){
-                spot = Spot.create({thumbnail,company,price,techs:techs})
+                spot = await Spot.create({
+                    thumbnail:filename,
+                    company,
+                    price,
+                    techs:techs.split(',').map(tech=> tech.trim()),
+                    user: user_id
+                })
             }
 
-            return res.json(spot) */
-
-            console.log(req.body);
-            console.log(req.file);
-
-            return res.json({ok:true});
+            return res.json(spot)
         }
     }
