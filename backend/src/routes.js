@@ -12,6 +12,6 @@
 
     routes.post('/sessions', SessionController.store);
     routes.post('/spots', upload.single('thumbnail') ,SpotController.store);
-    routes.get('/spots', SpotController.get);
+    //routes.get('/spots', SpotController.get);
 
     module.exports = routes;
